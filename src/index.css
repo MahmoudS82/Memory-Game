@@ -1,0 +1,509 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  min-height: 100vh;
+
+  background:
+    radial-gradient(circle at top left,
+      rgba(99, 102, 241, 0.18),
+      transparent 35%),
+    radial-gradient(circle at bottom right,
+      rgba(139, 92, 246, 0.15),
+      transparent 35%),
+    #09090b;
+
+  color: #ffffff;
+}
+
+
+/* =========================
+   APP
+========================= */
+
+.app-container {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+
+  padding: 50px 20px;
+}
+
+.game-container {
+  width: 100%;
+  max-width: 850px;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.game-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 35px;
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 3px;
+
+  color: #818cf8;
+
+  margin-bottom: 8px;
+}
+
+.title {
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 800;
+
+  letter-spacing: -1.5px;
+
+  background: linear-gradient(135deg,
+      #ffffff,
+      #a5b4fc);
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+}
+
+.subtitle {
+  margin-top: 7px;
+
+  color: #71717a;
+
+  font-size: 15px;
+}
+
+
+/* =========================
+   SCORE
+========================= */
+
+.score-card {
+  min-width: 105px;
+
+  padding: 15px 20px;
+
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.05);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(10px);
+
+  text-align: center;
+}
+
+.score-label {
+  display: block;
+
+  font-size: 10px;
+
+  letter-spacing: 2px;
+
+  color: #71717a;
+
+  margin-bottom: 5px;
+}
+
+.score {
+  font-size: 24px;
+
+  font-weight: 800;
+
+  color: #a5b4fc;
+}
+
+
+/* =========================
+   CARDS GRID
+========================= */
+
+.cards-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 16px;
+
+  perspective: 1000px;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.card {
+  position: relative;
+
+  aspect-ratio: 1 / 1;
+
+  cursor: pointer;
+
+  perspective: 1000px;
+}
+
+.card-inner {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  transform-style: preserve-3d;
+
+  transition:
+    transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+
+  border-radius: 18px;
+}
+
+.card.revealed .card-inner,
+.card.matched .card-inner {
+  transform: rotateY(180deg);
+}
+
+
+/* =========================
+   CARD SIDES
+========================= */
+
+.card-back,
+.card-front {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 18px;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+
+/* =========================
+   CARD BACK
+========================= */
+
+.card-back {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(135deg,
+      #18181b,
+      #27272a);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.card-back::before {
+  content: "";
+
+  position: absolute;
+
+  width: 80%;
+  height: 80%;
+
+  border-radius: 14px;
+
+  border: 1px solid rgba(129, 140, 248, 0.15);
+
+  transform: rotate(45deg);
+}
+
+.card-back span {
+  position: relative;
+
+  font-size: 32px;
+
+  font-weight: 800;
+
+  color: #818cf8;
+
+  text-shadow:
+    0 0 20px rgba(129, 140, 248, 0.5);
+}
+
+
+/* =========================
+   CARD FRONT
+========================= */
+
+.card-front {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  padding: 15px;
+
+  background: #fafafa;
+
+  border: 3px solid transparent;
+
+  transform: rotateY(180deg);
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.card-front img {
+  width: 58%;
+  height: 58%;
+
+  object-fit: contain;
+}
+
+.card-name {
+  font-size: 12px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1px;
+
+  color: #27272a;
+}
+
+
+/* =========================
+   HOVER
+========================= */
+
+.card:not(.revealed):not(.matched):hover {
+  transform: translateY(-5px);
+}
+
+.card:not(.revealed):not(.matched):hover .card-back {
+  border-color: rgba(129, 140, 248, 0.45);
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.35),
+    0 0 20px rgba(99, 102, 241, 0.1);
+}
+
+
+/* =========================
+   MATCHED
+========================= */
+
+.card.matched {
+  cursor: default;
+}
+
+.card.matched .card-front {
+  border-color: #22c55e;
+
+  box-shadow:
+    0 0 0 2px rgba(34, 197, 94, 0.15),
+    0 10px 30px rgba(34, 197, 94, 0.12);
+}
+
+.card.matched .card-front::after {
+  content: "✓";
+
+  position: absolute;
+
+  top: 8px;
+  right: 8px;
+
+  width: 24px;
+  height: 24px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #22c55e;
+
+  color: white;
+
+  font-size: 14px;
+  font-weight: 800;
+}
+
+
+/* =========================
+   NEW GAME BUTTON
+========================= */
+
+.new-game-btn {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  margin: 32px auto 0;
+
+  padding: 13px 25px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background: linear-gradient(135deg,
+      #6366f1,
+      #8b5cf6);
+
+  color: white;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 20px rgba(99, 102, 241, 0.25);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.new-game-btn span {
+  font-size: 18px;
+
+  transition: transform 0.4s ease;
+}
+
+.new-game-btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 28px rgba(99, 102, 241, 0.35);
+}
+
+.new-game-btn:hover span {
+  transform: rotate(180deg);
+}
+
+.new-game-btn:active {
+  transform: translateY(0);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 650px) {
+  .app-container {
+    padding: 30px 15px;
+  }
+
+  .game-header {
+    margin-bottom: 25px;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 12px;
+  }
+
+  .card-inner,
+  .card-back,
+  .card-front {
+    border-radius: 14px;
+  }
+
+  .card-back span {
+    font-size: 25px;
+  }
+
+  .card-front {
+    padding: 10px;
+    gap: 5px;
+  }
+
+  .card-name {
+    font-size: 9px;
+  }
+
+  .score-card {
+    min-width: 85px;
+    padding: 12px;
+  }
+
+  .score {
+    font-size: 20px;
+  }
+}
+
+
+@media (max-width: 400px) {
+  .title {
+    font-size: 30px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+  }
+
+  .eyebrow {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  .cards-grid {
+    gap: 9px;
+  }
+
+  .card-front img {
+    width: 60%;
+    height: 60%;
+  }
+
+  .score-card {
+    min-width: 75px;
+    padding: 10px 8px;
+  }
+}
