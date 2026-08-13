@@ -1,16 +1,58 @@
-# React + Vite
+# 🧠 Memory Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A responsive memory card game built with React.  
+The goal is to find all matching pairs of cards with as few attempts as possible.
 
-Currently, two official plugins are available:
+## 🚀 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+https://memory-game-rho-taupe.vercel.app/
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Randomized cards on every new game
+- Card flip animation
+- Match detection
+- Prevents selecting more than two cards at once
+- Matched cards remain revealed
+- Score tracking
+- New Game button
+- Responsive design for desktop and mobile
+- Interactive hover and match animations
 
-## Expanding the Oxlint configuration
+## 🛠️ Built With
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+- React
+- JavaScript
+- CSS
+
+## 🧩 React Concepts Practiced
+
+This project was built to practice core React concepts, including:
+
+- `useState`
+- Props
+- Event handling
+- Conditional rendering
+- Array methods (`map`, `filter`)
+- State updates
+- Component-based architecture
+- Managing multiple pieces of state
+- Working with asynchronous behavior using `setTimeout`
+
+## 🎮 How to Play
+
+1. Click on a card to reveal it.
+2. Click on a second card.
+3. If the two cards match, they remain revealed.
+4. If they don't match, they are hidden again.
+5. Continue until all pairs are matched.
+6. Click **New Game** to restart with a new card order.
+
+## 📂 Project Structure
+
+```text
+src/
+├── App.jsx
+├── App.css
+├── Data.js
+└── main.jsx
